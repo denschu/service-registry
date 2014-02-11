@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.codecentric</groupId>
-	<artifactId>service-registry</artifactId>
+	<artifactId>service-registry-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>service-registry</name>
