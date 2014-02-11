@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/cu
         <vm:inbound-endpoint path="inbound" exchange-pattern="request-response" responseTimeout="1000000" doc:name="VM"/>
         <enricher doc:name="Message Enricher" target="#[variable:targetUrl]">
 	        <processor-chain>
-				<http:outbound-endpoint address="http://localhost:8081/services" method="GET"/>
+				<http:outbound-endpoint address="http://localhost:8081/services?serviceName=#[message.inboundProperties['serviceName']]" method="GET"/>
 				<object-to-string-transformer />
 			</processor-chain>
         </enricher>

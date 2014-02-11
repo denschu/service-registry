@@ -2,6 +2,9 @@ package de.codecentric;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
 import org.mule.api.MuleMessage;
 import org.mule.module.client.MuleClient;
@@ -25,6 +28,8 @@ public class ServiceLookupTest  extends FunctionalTestCase {
 		// Given
 		String request = "helloWorld";
 		MuleClient client = new MuleClient(muleContext);
+		Map header = new HashMap();
+		header.put("serviceName", "service1");
 		
 		// When
 		MuleMessage response = (MuleMessage)client.send("vm://inbound", request, null, 1000000);

@@ -10,8 +10,14 @@ public class ServiceRegistryController {
 
 	@RequestMapping("/services")
     public @ResponseBody String services(
-            @RequestParam(value="serviceName", required=false, defaultValue="World") String serviceName) {
-        return "localhost:8082/service1";
+            @RequestParam(value="serviceName", required=true) String serviceName, @RequestParam(value="serviceVersion", required=false) String serviceVersion) {
+		if(serviceName.equals("service1")){
+			return "localhost:8082/service1";
+		}else if(serviceName.equals("service2")){
+			return "localhost:8082/service2";
+		}
+		return "localhost:8082/service1";
+        
     }
 	
 }
