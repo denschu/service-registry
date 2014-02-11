@@ -30,6 +30,7 @@ public class ServiceLookupTest  extends FunctionalTestCase {
 		MuleClient client = new MuleClient(muleContext);
 		Map header = new HashMap();
 		header.put("serviceName", "service1");
+		header.put("serviceVersion", "1");
 		
 		// When
 		MuleMessage response = (MuleMessage)client.send("vm://inbound", request, null, 1000000);
