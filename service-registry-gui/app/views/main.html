@@ -32,19 +32,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr ng-repeat="service in services">
               <td>1</td>
-              <td>service1</td>
-              <td>1</td>
-              <td>http://localhost:8082/service1/v1</td>
-              <td><button type="button" class="btn btn-success">Edit</button></td>
-              <td><button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>service1</td>
-              <td>2</td>
-              <td>http://localhost:8082/service1/v2</td>
+              <td>{{ service.name }}</td>
+              <td>{{ service.version }}</td>
+              <td>{{ service.url }}</td>
               <td><button type="button" class="btn btn-success">Edit</button></td>
               <td><button type="button" class="btn btn-danger">Delete</button></td>
             </tr>
