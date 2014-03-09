@@ -1,5 +1,5 @@
 Service Registry for integration platforms
-================
+================================================
 
 * Caching
 * GUI
@@ -9,8 +9,10 @@ Service Registry for integration platforms
 
 # Installation
 
+	cd service-registry
 	mvn clean install
 
 # Run
 
+	cd service-registry
 	mvn spring-boot:run
