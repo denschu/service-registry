@@ -5,3 +5,12 @@ Service Registry for integration platforms
 * GUI
 * Metadata
 * Persistence
+
+
+# Installation
+
+	mvn clean install
+
+# Run
+
+	mvn spring-boot:run

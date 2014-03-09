@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ServiceRegistryController {
 
-	@RequestMapping("/services")
+	@RequestMapping("/api/services")
     public @ResponseBody List<Service> showServices() {
 		List<Service> services = new ArrayList<Service>();
 		services.add(new Service("service1","1","localhost:8082/service1"));
@@ -19,7 +19,7 @@ public class ServiceRegistryController {
         
     }
 
-	@RequestMapping("/services/{name}/versions/{version}")
+	@RequestMapping("/api/services/{name}/versions/{version}")
     public @ResponseBody String showServiceUrl(
             @PathVariable(value="name") String name, @PathVariable(value="version") String version) {
 		if(name.equals("service1")){
