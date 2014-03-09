@@ -1,6 +1,8 @@
 Service Registry for integration platforms
 ================================================
 
+[![Build Status](https://travis-ci.org/denschu/service-registry.png?branch=master)](https://travis-ci.org/denschu/service-registry)
+
 * Caching
 * GUI
 * Metadata
