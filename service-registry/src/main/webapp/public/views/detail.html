@@ -1,32 +1,19 @@
 <div class="container">
-  <div class="main-template">
-	<form class="form-horizontal">
-		<fieldset>
-	        <div class="control-group">
-	            <label class="control-label" for="inputName">Name</label>
-	            <div class="controls">
-	                <input type="text" id="inputName" ng-model="service.name" placeholder="Name" class="input-xxlarge" required=""/>
-	            </div>
-	        </div>
-	        <div class="control-group">
-	            <label class="control-label" for="inputVersion">Version</label>
-	            <div class="controls">
-	                <input type="text" id="inputVersion" ng-model="service.version" placeholder="Version" class="input-xxlarge" required=""/>
-	            </div>
-	        </div>
-	        <div class="control-group">
-	            <label class="control-label" for="inputUrl">URL</label>
-	            <div class="controls">
-	                <input type="text" id="inputUrl" ng-model="service.url" placeholder="URL" class="input-xxlarge" required=""/>
-	            </div>
-	        </div>
-	        <div class="control-group">
-	            <div class="controls">
-	                <a ng-click="saveService()" class="btn btn-small btn-primary">Save</a>
-	                <a ng-click="cancel()" class="btn btn-small btn-primary">Cancel</a>
-	            </div>
-	        </div>
-		</fieldset>
-	</form>
-  </div>
+	<form role="form">
+       <h2 class="form-signin-heading">Service Details</h2>   
+       <div class="form-group">
+		    <label for="inputName">Name</label>
+		    <input type="text" id="inputName" ng-model="service.name" class="form-control" placeholder="Name of the Service" required autofocus>
+	   </div>    
+       <div class="form-group">
+		    <label for="inputName">Version</label>
+		    <input type="text" id="inputVersion" ng-model="service.version" class="form-control" placeholder="Version of the Service" required autofocus>
+	   </div> 
+       <div class="form-group">
+		    <label for="inputName">URL</label>
+		    <input type="text" id="inputUrl" ng-model="service.url" class="form-control" placeholder="URL of the Service" required autofocus>
+	   </div> 
+       <button ng-click="saveService()" class="btn btn-lg btn-primary" type="submit">Save</button>
+       <button ng-click="cancel()" class="btn btn-lg btn-primary" type="submit">Cancel</button>
+  	</form>
 </div><!-- /.container -->
