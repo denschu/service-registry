@@ -14,7 +14,8 @@ angular.module('service-registry.services', ['ngResource'])
     return $resource(
     		'/api/services/:id', 
     		{id:'@id'}, {
-    			query: {method:'GET', isArray:true},
-    			update: {method:'PUT'}
+    			show: { method: 'GET' },
+    			update: {method: 'PUT', params: {id: '@id'} },
+    			delete: {method:'DELETE', params: {id: '@id'} }
     		});
   }]);

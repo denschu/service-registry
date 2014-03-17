@@ -18,6 +18,10 @@ angular.module('service-registry', [
         templateUrl: 'views/detail.html',
         controller: 'ServiceCreationCtrl'
       })
+      .when('/services/:id', {
+        templateUrl: 'views/detail.html',
+        controller: 'ServiceDetailCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -35,7 +35,26 @@ public class ServiceRegistryController {
 	Service saveService(@RequestBody Service service) {
 		return repository.save(service);
 	}
+	
+	@RequestMapping(value = "/api/services/{id}", method = RequestMethod.PUT)
+	public @ResponseBody
+	Service updateService(@RequestBody Service service) {
+		return repository.save(service);
+	}
+	
+	@RequestMapping(value = "/api/services/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody
+	void deleteService(@PathVariable Long id) {
+		repository.delete(id);
+	}
 
+	@RequestMapping("/api/services/{id}")
+	public @ResponseBody
+	Service showService(@PathVariable Long id) {
+		Service service = repository.findOne(id);
+		return service;
+	}
+	
 	@RequestMapping("/api/services/{name}/versions/{version}")
 	public @ResponseBody
 	String showServiceUrl(@PathVariable(value = "name") String name,
