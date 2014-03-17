@@ -14,6 +14,10 @@ angular.module('service-registry', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/add-service', {
+        templateUrl: 'views/detail.html',
+        controller: 'ServiceCreationCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
