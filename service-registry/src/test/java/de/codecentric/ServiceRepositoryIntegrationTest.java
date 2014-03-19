@@ -23,8 +23,10 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.omg.CORBA.DataInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +61,19 @@ public class ServiceRepositoryIntegrationTest {
 		assertThat(result.getName(), is("service1"));
 		assertThat(result.getVersion(), is("1.0.0"));
 		assertThat(result.getUrl(), is("http://localhost:8080/service1"));
+	}
+	
+	@Test(expected=DataIntegrityViolationException.class)
+	public void savesNewServiceWithNull() {
+
+		//Given
+		Service service = new Service("service1","1.0.0",null);
+		
+		//When
+		Service result = repository.save(service);
+
+		//Then
+		assertThat(result, is(notNullValue()));
 	}
 	
 	@Test
