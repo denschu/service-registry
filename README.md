@@ -20,4 +20,4 @@ Service Registry for integration platforms
 	mvn spring-boot:run
 
 
-http://morning-everglades-1965.herokuapp.com/
+http://secure-caverns-2573.herokuapp.com/
