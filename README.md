@@ -18,3 +18,6 @@ Service Registry for integration platforms
 
 	cd service-registry
 	mvn spring-boot:run
+
+
+http://morning-everglades-1965.herokuapp.com/
