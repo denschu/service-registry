@@ -1,3 +1,10 @@
 language: java
 before_install: cd service-registry
 script: mvn install
+deploy:
+  provider: heroku
+  api_key:
+    secure: NAZh9X9XkSFB94EJwUtE15p98ynUYcrs972MhEb1ZsqoL7hm/Xz9a8eBG/u1SzAS2+FLKq00N+9xw/mMvg3/G1ejt6K3djlvzjCZLzwGOXTA0fqPv00QR+581TyWDzfmznAXmYOf+fQC2a6EJC5RPwzPsSi+Hh2GjKDcstXxLEk=
+  app: service-registry
+  on:
+    repo: denschu/service-registry
