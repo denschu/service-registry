@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +32,7 @@ public class ServiceRegistryController {
 		return services;
 	}
 
+	@CacheEvict(value = "services", allEntries=true)
 	@RequestMapping(value = "/api/services", method = RequestMethod.POST)
 	public @ResponseBody
 	Service saveService(@RequestBody Service service) {
