@@ -1,10 +1,2 @@
 language: java
 script: mvn install
-deploy:
-  provider: heroku
-  api_key:
-    secure: SOukRZ8NiYvbrs0AwcqS2R9I1GfBISMmAeLmz3YrCkZC1FfjJCX9NCn92SkqZqKmxqXqI7vu3/ZLkWWD3wLQAPf9Ps0iUav4BZFf2d8okwau3LSP9pJgTNbzIS6siuHxRHv5zUvSqPMtuF9nSscVwejsy60HKowk1BA7CfKj8O0=
-  skip_cleanup: true
-  app: service-registry
-  on:
-    repo: denschu/service-registry

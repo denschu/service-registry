@@ -18,6 +18,3 @@ Service Registry for integration platforms
 
 	cd service-registry
 	mvn spring-boot:run
-
-
-http://secure-caverns-2573.herokuapp.com/
