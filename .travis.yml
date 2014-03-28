@@ -3,7 +3,7 @@ script: mvn install
 deploy:
   provider: heroku
   api_key:
-    secure: NAZh9X9XkSFB94EJwUtE15p98ynUYcrs972MhEb1ZsqoL7hm/Xz9a8eBG/u1SzAS2+FLKq00N+9xw/mMvg3/G1ejt6K3djlvzjCZLzwGOXTA0fqPv00QR+581TyWDzfmznAXmYOf+fQC2a6EJC5RPwzPsSi+Hh2GjKDcstXxLEk=
+    secure: SOukRZ8NiYvbrs0AwcqS2R9I1GfBISMmAeLmz3YrCkZC1FfjJCX9NCn92SkqZqKmxqXqI7vu3/ZLkWWD3wLQAPf9Ps0iUav4BZFf2d8okwau3LSP9pJgTNbzIS6siuHxRHv5zUvSqPMtuF9nSscVwejsy60HKowk1BA7CfKj8O0=
   app: service-registry
   on:
     repo: denschu/service-registry
