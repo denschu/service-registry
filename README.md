@@ -10,7 +10,7 @@ Service Registry for integration platforms
 
 # Run
 
-	java -Dserver.port=8080 -jar target/*.jar
+	java -Dserver.port=8080 -jar target/*.jar --spring.profiles.active=security
 	
 # GUI
 
