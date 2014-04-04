@@ -12,6 +12,16 @@ Service Registry for integration platforms
 
 	java -Dserver.port=8080 -jar target/*.jar
 	
+# GUI
+
+Open this URL in the browser
+	
+	http://localhost:8080/
+	
+# REST-API
+
+	curl http://localhost:8080/api/services/service1/versions/1.0.0 -u user:password
+	
 # Features
 
 * REST-API to lookup services
