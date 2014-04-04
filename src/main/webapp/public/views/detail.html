@@ -6,12 +6,20 @@
 		    <input type="text" id="inputName" ng-model="service.name" class="form-control" placeholder="Name of the Service" required autofocus>
 	   </div>    
        <div class="form-group">
-		    <label for="inputName">Version</label>
+		    <label for="inputVersion">Version</label>
 		    <input type="text" id="inputVersion" ng-model="service.version" class="form-control" placeholder="Version of the Service" required>
 	   </div> 
        <div class="form-group">
-		    <label for="inputName">URL</label>
+		    <label for="inputUrl">URL</label>
 		    <input type="text" id="inputUrl" ng-model="service.url" class="form-control" placeholder="URL of the Service" required>
+	   </div> 
+       <div class="form-group">
+		    <label for="inputMessage">Message</label>
+		    <input type="text" id="inputMessage" ng-model="service.message" class="form-control" placeholder="Message">
+	   </div> 
+       <div class="form-group">
+		    <label for="inputActive">Active</label>
+		    <input type="checkbox" id="inputActive" ng-model="service.active" class="form-control">
 	   </div> 
        <button ng-click="saveService()" class="btn btn-lg btn-primary" type="submit">Save</button>
        <button ng-click="cancel()" class="btn btn-lg btn-primary" type="submit">Cancel</button>

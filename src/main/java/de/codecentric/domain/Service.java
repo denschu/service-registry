@@ -19,14 +19,20 @@ public class Service {
 	private String version;
 	@Column(nullable = false)
 	private String url;
+	@Column
+	private String message;
+	@Column(nullable = false)
+	private boolean active;
 
 	public Service() {
 	}
 
-	public Service(String name, String version, String url) {
+	public Service(String name, String version, String url, String message) {
 		this.name = name;
 		this.version = version;
 		this.url = url;
+		this.message = message;
+		this.active = false;
 	}
 
 	public long getId() {
@@ -61,11 +67,27 @@ public class Service {
 		this.url = url;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
 		return String.format(
-				"Service[id=%d, name='%s', version='%s', url='%s']", id, name,
-				version, url);
+				"Service[id=%d, name='%s', version='%s', url='%s', message='%s', active='%s']", id, name,
+				version, url, message, active);
 	}
 
 }

@@ -23,10 +23,10 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.omg.CORBA.DataInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,7 +50,7 @@ public class ServiceRepositoryIntegrationTest {
 	public void savesNewService() {
 
 		//Given
-		Service service = new Service("service1","1.0.0","http://localhost:8080/service1");
+		Service service = new Service("service1","1.0","http://localhost:8080/service1","Testmessage");
 		
 		//When
 		Service result = repository.save(service);
@@ -59,15 +59,16 @@ public class ServiceRepositoryIntegrationTest {
 		assertThat(result, is(notNullValue()));
 		assertThat(result.getId(), is(notNullValue()));
 		assertThat(result.getName(), is("service1"));
-		assertThat(result.getVersion(), is("1.0.0"));
+		assertThat(result.getVersion(), is("1.0"));
 		assertThat(result.getUrl(), is("http://localhost:8080/service1"));
+		assertThat(result.getMessage(), is("Testmessage"));
 	}
 	
 	@Test(expected=DataIntegrityViolationException.class)
 	public void savesNewServiceWithNull() {
 
 		//Given
-		Service service = new Service("service1","1.0.0",null);
+		Service service = new Service("service1","1.0",null,null);
 		
 		//When
 		Service result = repository.save(service);
@@ -95,7 +96,7 @@ public class ServiceRepositoryIntegrationTest {
 
 		//Given
 		String name = "service1";
-		String version = "1.0.0";
+		String version = "1.0";
 		
 		//When
 		Service result = repository.findByNameAndVersion(name,version);
@@ -103,7 +104,21 @@ public class ServiceRepositoryIntegrationTest {
 		//Then
 		assertThat(result, is(notNullValue()));
 		assertThat(result.getName(), is("service1"));
-		assertThat(result.getVersion(), is("1.0.0"));
+		assertThat(result.getVersion(), is("1.0"));
+	}
+	
+	public void findServiceByNameAndVersionNotFound() {
+
+		//Given
+		String name = "service1";
+		String version = "x.0";
+		
+		//When
+		Service service = repository.findByNameAndVersion(name,version);
+
+		//Then
+		assertThat(service, is(notNullValue()));
+		
 	}
 	
 }
