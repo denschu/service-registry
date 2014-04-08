@@ -1,0 +1,8 @@
+#
+#   Java Home
+#
+JAVA_HOME="/usr/java/latest"
+#
+#   JVM Options
+#
+JAVA_OPTS="-Xms128m -Xmx256m -XX:MaxPermSize=256m -Dspring.profiles.active=security"

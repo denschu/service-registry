@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.0.0.RELEASE</version>
+		<version>1.0.1.RELEASE</version>
 	</parent>
 	<properties>
 		<java.version>1.7</java.version>
@@ -46,9 +46,9 @@
 		</dependency>
 		<!-- Security -->
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 		<!-- GUI -->
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -79,6 +79,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -109,4 +110,99 @@
 			</resource>
 		</resources>
 	</build>
+	<profiles>
+		<profile>
+			<id>rpm</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>rpm-maven-plugin</artifactId>
+						<version>2.1-alpha-3</version>
+						<extensions>true</extensions>
+						<configuration>
+							<name>${project.name}</name>
+							<copyright>2014,codecentric</copyright>
+							<distribution>redhat</distribution>
+							<group>Application</group>
+							<packager>root</packager>
+							<changelogFile>src/changelog</changelogFile>
+							<targetOS>Linux</targetOS>
+							<targetVendor>codecentric</targetVendor>
+							<vendor>redhat</vendor>
+							<defineStatements>
+								<defineStatement>_unpackaged_files_terminate_build 0</defineStatement>
+							</defineStatements>
+							<mappings>
+								<mapping>
+									<directory>/opt/standalone/${project.name}/</directory>
+									<filemode>755</filemode>
+									<username>tomcat</username>
+									<groupname>tomcat</groupname>
+									<sources>
+										<source>
+											<destination>${project.name}.jar</destination>
+											<location>target/${project.artifactId}.jar</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<!-- Environment Properties -->
+									<directory>/etc/${project.name}/</directory>
+									<configuration>true</configuration>
+									<filemode>755</filemode>
+									<username>root</username>
+									<groupname>root</groupname>
+									<sources>
+										<source>
+											<location>src/main/config/environment.properties</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<!-- JVM-Parameter -->
+									<directory>/etc/sysconfig/</directory>
+									<configuration>true</configuration>
+									<filemode>755</filemode>
+									<username>root</username>
+									<groupname>root</groupname>
+									<sources>
+										<source>
+											<destination>${project.name}</destination>
+											<location>src/main/config/service-registry-sysconfig</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<!-- Init-Script -->
+									<directory>/etc/init.d/</directory>
+									<filemode>755</filemode>
+									<username>root</username>
+									<groupname>root</groupname>
+									<sources>
+										<source>
+											<destination>${project.name}</destination>
+											<location>src/main/scripts/service-registry</location>
+										</source>
+									</sources>
+								</mapping>
+							</mappings>
+							<preinstallScriptlet>
+								<script>if [ -f /etc/init.d/${project.name} ]; then
+									/etc/init.d/${project.name} stop; fi</script>
+							</preinstallScriptlet>
+							<postinstallScriptlet>
+								<script>/etc/init.d/${project.name} start</script>
+							</postinstallScriptlet>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

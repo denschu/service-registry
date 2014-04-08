@@ -4,8 +4,6 @@
 #
 # A Linux start/stop script for Java daemons.
 #
-set +x
-. /etc/rc.status                                                       # load start/stop script "rc" definitions
 NAME="$(basename $0)"                                                  # the name of the script
 . /etc/sysconfig/${NAME}                                               # Source instance specific config file (JAVA_HOME,JAVA_OPTS, etc.)
 APPLICATION_HOME="/opt/standalone/${NAME}"                             # home of the application executable
@@ -22,7 +20,7 @@ serviceGroup="root"                                                    # OS grou
 maxShutdownTime=15                                                     # maximum number of seconds to wait for the daemon to terminate normally
 pidFile="/var/run/$serviceName.pid"                              	   # name of PID file (PID = process ID number)
 javaCommand="java"                                                     # name of the Java launcher without the path
-javaExe="/usr/java/jdk1.7.0_25/bin/$javaCommand"                       # file name of the Java application launcher executable
+javaExe="$JAVA_HOME/bin/$javaCommand"                                  # file name of the Java application launcher executable
 javaArgs="-jar ${APPLICATION_HOME}/${NAME}.jar"                        # arguments for Java launcher
 javaCommandLine="$javaExe $JAVA_OPTS $JAVA_OPTS_GLOBAL $javaArgs --logging.file=/var/log/${NAME}.log"      # command line to start the Java service application
 
@@ -113,36 +111,36 @@ function runInConsoleMode {
 
 function startService {
    getServicePid
-   if [ $? -eq 0 ]; then echo -n "$serviceName is already running"; rc_failed 0; rc_status -v; return 0; fi
+   if [ $? -eq 0 ]; then echo -n "$serviceName is already running"; RETVAL=0; return 0; fi
    echo -n "Starting $serviceName   "
    startServiceProcess
-   if [ $? -ne 0 ]; then rc_failed 1; rc_status -v; return 1; fi
-   rc_failed 0
-   rc_status -v
+   if [ $? -ne 0 ]; then RETVAL=1; echo "failed"; return 1; fi
+   echo "started PID=$servicePid"
+   RETVAL=0
    return 0; }
 
 function stopService {
    getServicePid
-   if [ $? -ne 0 ]; then echo -n "$serviceName is not running"; rc_failed 0; rc_status -v; return 0; fi
+   if [ $? -ne 0 ]; then echo -n "$serviceName is not running"; RETVAL=0; echo ""; return 0; fi
    echo -n "Stopping $serviceName   "
    stopServiceProcess
-   if [ $? -ne 0 ]; then rc_failed 1; rc_status -v; return 1; fi
-   rc_failed 0
-   rc_status -v
+   if [ $? -ne 0 ]; then RETVAL=1; echo "failed"; return 1; fi
+   echo "stopped PID=$servicePid"
    return 0; }
 
 function checkServiceStatus {
    echo -n "Checking for $serviceName:   "
    if getServicePid; then
-      rc_failed 0
-    else
-      rc_failed 3
-      fi
-   rc_status -v
+      echo "running PID=$servicePid"
+      RETVAL=0
+   else
+      echo "stopped"
+      RETVAL=3
+   fi
    return 0; }
 
 function main {
-   rc_reset
+   RETVAL=0
    case "$1" in
       console)                                             # runs the Java program in console mode
          runInConsoleMode
@@ -164,6 +162,7 @@ function main {
          exit 1
          ;;
       esac
-   rc_exit; }
+   exit $RETVAL 
+}
 
 main $1
