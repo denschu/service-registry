@@ -7,7 +7,7 @@
 <listEntry value="4"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="de.codecentric.Application"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--logging.file=target/service-registry.log"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--logging.file=target/service-registry.log --server.address=localhost --server.port=8080"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="service-registry"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dspring.profiles.active=security"/>
 </launchConfiguration>

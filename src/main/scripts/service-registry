@@ -15,26 +15,24 @@ scriptFile=$(readlink -fn $(type -p $0))                               # the abs
 scriptDir=$(dirname $scriptFile)                                       # absolute path of the script directory
 applDir="$scriptDir"                                                   # home directory of the service application
 serviceName=${NAME}			                                           # service name
-serviceUser="root"                                                     # OS user name for the service
-serviceGroup="root"                                                    # OS group name for the service
 maxShutdownTime=15                                                     # maximum number of seconds to wait for the daemon to terminate normally
 pidFile="/var/run/$serviceName.pid"                              	   # name of PID file (PID = process ID number)
 javaCommand="java"                                                     # name of the Java launcher without the path
 javaExe="$JAVA_HOME/bin/$javaCommand"                                  # file name of the Java application launcher executable
-javaArgs="-jar ${APPLICATION_HOME}/${NAME}.jar"                        # arguments for Java launcher
-javaCommandLine="$javaExe $JAVA_OPTS $JAVA_OPTS_GLOBAL $javaArgs --logging.file=/var/log/${NAME}.log"      # command line to start the Java service application
+JAVA_ARGS="-jar ${APPLICATION_HOME}/${NAME}.jar"                       # arguments for Java launcher
+javaCommandLine="$javaExe $JAVA_OPTS $JAVA_OPTS_GLOBAL $JAVA_ARGS $CL_ARGS" # command line to start the Java service application
 
 #make the log directory if it doesn't exist
 if [ ! -d "$LOG_DIR" ] ; then
    mkdir $LOG_DIR
 fi
 
-# Makes the file $1 writable by the group $serviceGroup.
+# Makes the file $1 writable by the group $GROUP.
 function makeFileWritable {
    local filename="$1"
    touch $filename || return 1
-   chgrp $serviceGroup $filename || return 1
-   chown $serviceUser $filename || return 1
+   chgrp $GROUP $filename || return 1
+   chown $USER $filename || return 1
    chmod g+w $filename || return 1
    return 0; }
 
@@ -68,7 +66,7 @@ function startServiceProcess {
    makeFileWritable $pidFile || return 1
    makeFileWritable $LOG_FILE || return 1
    local cmd="setsid $javaCommandLine >>$LOG_FILE 2>&1 & echo \$! >$pidFile"
-   sudo -u $serviceUser $SHELL -c "$cmd" || return 1
+   sudo -u $USER $SHELL -c "$cmd" || return 1
    sleep 0.1
    servicePid="$(<$pidFile)"
    if checkProcessIsRunning $servicePid; then :; else
@@ -105,7 +103,7 @@ function runInConsoleMode {
    getServicePid
    if [ $? -eq 0 ]; then echo "$serviceName is already running"; return 1; fi
    cd $applDir || return 1
-   sudo -u $serviceUser $javaCommandLine || return 1
+   sudo -u $USER $javaCommandLine || return 1
    if [ $? -eq 0 ]; then return 1; fi
    return 0; }
 
