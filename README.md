@@ -71,8 +71,3 @@ Port
 Can be customized in "/etc/sysconfig/service-registry"
 
 	--server.port=8080
-	
-# TODO
-
-REST Dispatcher? Version? Location Transparency?
-Swagger
