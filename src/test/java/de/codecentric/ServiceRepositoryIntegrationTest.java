@@ -80,37 +80,37 @@ public class ServiceRepositoryIntegrationTest {
 	public void findServiceByName() {
 
 		//Given
-		String name = "service1";
+		String name = "example";
 		
 		//When
 		List<Service> result = repository.findByName(name);
 
 		//Then
 		assertThat(result, is(notNullValue()));
-		assertThat(result.get(0).getName(), is("service1"));
+		assertThat(result.get(0).getName(), is(name));
 	}
 
 	@Test
 	public void findServiceByNameAndVersion() {
 
 		//Given
-		String name = "service1";
-		String version = "1.0";
+		String name = "example";
+		String version = "v1";
 		
 		//When
 		Service result = repository.findByNameAndVersion(name,version);
 
 		//Then
 		assertThat(result, is(notNullValue()));
-		assertThat(result.getName(), is("service1"));
-		assertThat(result.getVersion(), is("1.0"));
+		assertThat(result.getName(), is(name));
+		assertThat(result.getVersion(), is("v1"));
 	}
 	
 	public void findServiceByNameAndVersionNotFound() {
 
 		//Given
-		String name = "service1";
-		String version = "x.0";
+		String name = "example";
+		String version = "vX";
 		
 		//When
 		Service service = repository.findByNameAndVersion(name,version);
