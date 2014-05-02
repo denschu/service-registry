@@ -4,12 +4,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 
 import de.codecentric.domain.Service;
 import de.codecentric.repository.ServiceRepository;
 
 @ComponentScan
 @EnableAutoConfiguration
+@PropertySource("classpath:environment.properties")
+
 public class Application {
 
     public static void main(String[] args) {
