@@ -80,7 +80,8 @@ public class ServiceRepositoryIntegrationTest {
 	public void findServiceByName() {
 
 		//Given
-		String name = "example";
+		String name = "service1";
+		repository.save(new Service("service1","1.0","http://localhost:8080/service1","Testmessage"));
 		
 		//When
 		List<Service> result = repository.findByName(name);
@@ -94,8 +95,9 @@ public class ServiceRepositoryIntegrationTest {
 	public void findServiceByNameAndVersion() {
 
 		//Given
-		String name = "example";
-		String version = "v1";
+		String name = "service2";
+		String version = "1.0";
+		repository.save(new Service("service2","1.0","http://localhost:8080/service2","Testmessage"));
 		
 		//When
 		Service result = repository.findByNameAndVersion(name,version);
@@ -103,7 +105,7 @@ public class ServiceRepositoryIntegrationTest {
 		//Then
 		assertThat(result, is(notNullValue()));
 		assertThat(result.getName(), is(name));
-		assertThat(result.getVersion(), is("v1"));
+		assertThat(result.getVersion(), is(version));
 	}
 	
 	public void findServiceByNameAndVersionNotFound() {

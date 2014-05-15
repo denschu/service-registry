@@ -15,12 +15,27 @@ Service Registry for integration platforms
 
 	cd service-registry
 	mvn clean install
+	
+# Configure a DataSource in src/test/resources/environment.properties
+
+	#MySQL 
+	spring.datasource.url=jdbc:mysql://localhost/test
+	spring.datasource.username=root
+	spring.datasource.password=root
+	spring.datasource.driverClassName=com.mysql.jdbc.Driver
+	spring.datasource.intialize=true
+	
+There is another environment.properties in src/main/config that will be used as a template during RPM installation.
 
 # Run locally
 
 Start JVM
 
 	java -jar target/*.jar --spring.profiles.active=security --server.port=8080
+	
+or 
+
+	mvn spring-boot:run
 
 Open GUI in the browser
 	
