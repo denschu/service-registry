@@ -1,7 +1,7 @@
 #
 #   Java Home
 #
-JAVA_HOME="/usr/java/latest"
+JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_10.jdk/Contents/Home"
 #
 #   JVM Options
 #
