@@ -27,10 +27,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
@@ -185,7 +181,7 @@
 							</defineStatements>
 							<mappings>
 								<mapping>
-									<directory>/opt/standalone/${project.name}/</directory>
+									<directory>/opt/${project.name}/</directory>
 									<filemode>755</filemode>
 									<username>tomcat</username>
 									<groupname>tomcat</groupname>
@@ -225,7 +221,7 @@
 								</mapping>
 								<mapping>
 									<!-- Init-Script -->
-									<directory>/etc/init.d/</directory>
+									<directory>/opt/${project.name}/bin/</directory>
 									<filemode>755</filemode>
 									<username>root</username>
 									<groupname>root</groupname>
@@ -237,13 +233,6 @@
 									</sources>
 								</mapping>
 							</mappings>
-							<preinstallScriptlet>
-								<script>if [ -f /etc/init.d/${project.name} ]; then
-									/etc/init.d/${project.name} stop; fi</script>
-							</preinstallScriptlet>
-							<postinstallScriptlet>
-								<script>/etc/init.d/${project.name} start</script>
-							</postinstallScriptlet>
 						</configuration>
 					</plugin>
 				</plugins>
