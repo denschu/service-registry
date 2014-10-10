@@ -6,8 +6,10 @@
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
 </listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="de.codecentric.Application"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--logging.file=target/service-registry.log --server.address=localhost --server.port=8080 --spring.config.location=classpath:/environment.properties"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--logging.file=target/service-registry.log --server.address=localhost --server.port=8080 --spring.config.location=classpath:/environment.properties --pid.file=target/pid.file"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="service-registry"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value=""/>
 </launchConfiguration>

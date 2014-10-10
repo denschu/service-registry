@@ -9,10 +9,9 @@ JAVA_OPTS="-Xms128m -Xmx256m -XX:MaxPermSize=256m -Dspring.profiles.active=secur
 
 #
 #   Command line arguments
-#
-PROG_ARGS="--spring.config.location=classpath:/environment.properties --logging.file=/var/log/service-registry.log --server.address=localhost --server.port=8080"                                                    
-
+#                                                
 APPLICATION_HOME="/opt/${SERVICENAME}"                                  # home of the application executable
 PROG_CONF="/etc/${SERVICENAME}/"                                        # home of the configuration files (will be added to classpath)
 LOG_DIR="/var/log"                                                      # the path to the logdirectory
-pidFile="/var/run/$SERVICENAME.pid"                              	    # name of PID file (PID = process ID number)
+PID_FILE="/var/run/$SERVICENAME.pid"                              	    # path and name of the PID file (PID = process ID number)
+PROG_ARGS="--spring.config.location=classpath:/environment.properties --logging.file=/var/log/service-registry.log --server.address=localhost --server.port=8080 --pid.file=$PID_FILE)"    
